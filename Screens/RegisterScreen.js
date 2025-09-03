@@ -16,31 +16,31 @@ export default function RegisterScreen({ navigation }) {
       alert(error.message);
     }
   };
-    return (
-      <View style={stylesReg.container}>
-        <TextInput
-          style={stylesReg.input}
-          autoCapitalize="none"
-          autoCorrect={false}
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          placeholder="Email"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={stylesReg.input}
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntry={true}
-          textContentType="password"
-          placeholder="Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TouchableOpacity style={stylesReg.button} onPress={handleRegister}>
-          <Text style={stylesReg.buttonText}>Registrarse</Text>
-        </TouchableOpacity>
-      </View>
-    );
+  return (
+    <View style={stylesReg.container}>
+      <TextInput
+        style={stylesReg.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="email-address"
+        textContentType="emailAddress"
+        placeholder="Email"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        style={stylesReg.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        secureTextEntry={true}
+        textContentType="password"
+        placeholder="Password"
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+      />
+      <TouchableOpacity style={stylesReg.button} onPress={handleRegister}>
+        <Text style={stylesReg.buttonText}>Registrarse</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }

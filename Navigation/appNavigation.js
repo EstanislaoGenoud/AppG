@@ -1,4 +1,4 @@
-import React, {useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthContext } from "../context/authContext.js";
@@ -6,9 +6,7 @@ import { AuthContext } from "../context/authContext.js";
 import LoginScreen from "../Screens/LoginScreen.js";
 import RegisterScreen from "../Screens/RegisterScreen.js";
 import HomeScreen from "../Screens/HomeScreen.js";
-{
-  /*import ProfileScreen from "";*/
-}
+import ProfileScreen from "../Screens/ProfileScreen.js";
 import SettingScreen from "../Screens/SettingScreen.js";
 
 const Stack = createNativeStackNavigator();
@@ -25,8 +23,8 @@ export default function AppNavigator() {
         <Stack.Navigator>
           {/* Rutas privadas */}
           <Stack.Screen name="Home" component={HomeScreen} />
-          {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
-          <Stack.Screen name="Settings" component={SettingScreen} />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          {/*<Stack.Screen name="Settings" component={SettingScreen} />*/}
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>

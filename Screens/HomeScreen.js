@@ -8,10 +8,10 @@ import {
   Modal,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import {styles} from "../Styles/StylesHo.js";
+import { styles } from "../Styles/StylesHo.js";
 import { AuthContext } from "../context/authContext.js";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const { user, logout } = useContext(AuthContext);
   const [menuVisible, setMenuVisible] = useState(false);
   const projects = [
@@ -30,7 +30,7 @@ export default function HomeScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Ionicons name="grid-outline" size={24} color="#333" />
-        
+
         <Ionicons name="notifications-outline" size={24} color="#333" />
       </View>
 
@@ -105,6 +105,9 @@ export default function HomeScreen() {
             justifyContent: "flex-end",
             backgroundColor: "rgba(0,0,0,0.3)",
           }}
+          onPress={() => {
+            setMenuVisible(false);
+          }}
         >
           <View
             style={{
@@ -118,6 +121,37 @@ export default function HomeScreen() {
             <Text style={{ marginBottom: 10 }}>
               {user?.displayName || user?.email}
             </Text>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#f1c40f",
+                padding: 10,
+                borderRadius: 8,
+                marginBottom: 10,
+                width: "100%",
+              }}
+              onPress={() => {
+                setMenuVisible(false);
+                navigation.navigate("Profile");
+              }}
+            >
+              <Text style={{ color: "#333", textAlign: "center" }}>Perfil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#f1c40f",
+                padding: 10,
+                borderRadius: 8,
+                marginBottom: 10,
+                width: "100%",
+              }}
+              onPress={() => {
+                setMenuVisible(false);
+              }}
+            >
+              <Text style={{ color: "#333", textAlign: "center" }}>
+                Editar perfil
+              </Text>
+            </TouchableOpacity>
             <TouchableOpacity
               style={{
                 backgroundColor: "#e74c3c",
