@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React from "react";
 import { AuthProvider } from "./context/authContext.js";
 import AppNavigator from "./Navigation/appNavigation.js";

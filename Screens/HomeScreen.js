@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
   TextInput,
   FlatList,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import styles from "../Styles/StylesHo.js";
+import {styles} from "../Styles/StylesHo.js";
 import { AuthContext } from "../context/authContext.js";
-import { useContext } from "react";
 
 export default function HomeScreen() {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  const [menuVisible, setMenuVisible] = useState(false);
   const projects = [
     { id: "1", title: "Mobile App", date: "May 30, 2022", progress: "60%" },
     { id: "2", title: "Dashboard", date: "May 30, 2022", progress: "40%" },
     { id: "3", title: "Banner", date: "May 30, 2022", progress: "20%" },
     { id: "4", title: "UI/UX", date: "May 30, 2022", progress: "80%" },
+    { id: "5", title: "Website", date: "May 30, 2022", progress: "50%" },
+    { id: "6", title: "Design", date: "May 30, 2022", progress: "70%" },
+    { id: "7", title: "Logo", date: "May 30, 2022", progress: "30%" },
+    { id: "8", title: "Wireframe", date: "May 30, 2022", progress: "90%" },
   ];
 
   return (
@@ -25,7 +30,7 @@ export default function HomeScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Ionicons name="grid-outline" size={24} color="#333" />
-        <Text style={styles.title}>Home</Text>
+        
         <Ionicons name="notifications-outline" size={24} color="#333" />
       </View>
 
@@ -83,10 +88,59 @@ export default function HomeScreen() {
         <TouchableOpacity>
           <Ionicons name="card-outline" size={26} color="#333" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setMenuVisible(true)}>
           <Ionicons name="person-outline" size={26} color="#333" />
         </TouchableOpacity>
       </View>
+      {/* Modal de menu de usuario */}
+      <Modal
+        visible={menuVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setMenuVisible(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            backgroundColor: "rgba(0,0,0,0.3)",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#fff",
+              padding: 20,
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ marginBottom: 10 }}>
+              {user?.displayName || user?.email}
+            </Text>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#e74c3c",
+                padding: 10,
+                borderRadius: 8,
+                marginBottom: 10,
+                width: "100%",
+              }}
+              onPress={() => {
+                logout();
+                setMenuVisible(false);
+              }}
+            >
+              <Text style={{ color: "#fff", textAlign: "center" }}>
+                Cerrar sesión
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setMenuVisible(false)}>
+              <Text style={{ color: "#333" }}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }

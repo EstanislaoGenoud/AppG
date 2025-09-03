@@ -1,6 +1,7 @@
 // Contexto de autenticacion
 
-import { createContext, useContext, useEffect, useState } from "react";
+import React, {useState, useContext, useEffect } from "react";
+import { createContext} from "react";
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -10,12 +11,13 @@ import {
 } from "firebase/auth";
 import { auth } from "../config/firebase";
 import * as SecureStore from "expo-secure-store";
-import firebase from "firebase/compat/app";
 
-const AuthContext = createContext();
+
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -26,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         await SecureStore.deleteItemAsync("userToken");
       }
+      setLoading(false);
     });
     return unsuscribe;
   }, []);

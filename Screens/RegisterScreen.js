@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { stylesReg } from "../Styles/StylesReg.js";
 import { AuthContext } from "../context/authContext.js";
-import { useContext } from "react";
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -13,13 +12,12 @@ export default function RegisterScreen({ navigation }) {
     try {
       await register(email, password);
       alert("Usuario Registrado con Exito!.");
-      navigation.navigate("Home");
     } catch (error) {
       alert(error.message);
     }
+  };
     return (
-      <View style={stylesReg}>
-        <Text>Register</Text>
+      <View style={stylesReg.container}>
         <TextInput
           style={stylesReg.input}
           autoCapitalize="none"
@@ -45,5 +43,4 @@ export default function RegisterScreen({ navigation }) {
         </TouchableOpacity>
       </View>
     );
-  };
 }

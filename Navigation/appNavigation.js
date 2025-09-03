@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useState, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthContext } from "../context/authContext.js";
@@ -9,12 +9,13 @@ import HomeScreen from "../Screens/HomeScreen.js";
 {
   /*import ProfileScreen from "";*/
 }
-import SettingsScreen from "../Screens/SettingScreen.js";
+import SettingScreen from "../Screens/SettingScreen.js";
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
   const { user, loading } = useContext(AuthContext);
+  const [, setLoading] = React.useState(true);
 
   if (loading) return null;
 
@@ -25,7 +26,7 @@ export default function AppNavigator() {
           {/* Rutas privadas */}
           <Stack.Screen name="Home" component={HomeScreen} />
           {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
-          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="Settings" component={SettingScreen} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
