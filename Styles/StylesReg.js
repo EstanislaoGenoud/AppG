@@ -1,4 +1,5 @@
 //Estilos para pantalla de Registro
+import { StyleSheet } from "react-native";
 
 export const stylesReg = StyleSheet.create({
   container: {

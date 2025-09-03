@@ -1,4 +1,5 @@
 // Estilos para pantalla de login
+import { StyleSheet } from "react-native";
 
 export const stylesLg = StyleSheet.create({
   container: {

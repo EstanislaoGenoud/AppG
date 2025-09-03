@@ -1,22 +1,11 @@
-import { NavigationContainer } from '@react-navigation/native';
-import createNativeStackNavigator from '@react-navigation/native-stack';
+import React from "react";
+import { AuthProvider } from "./context/authContext.js";
+import AppNavigator from "./Navigation/appNavigation.js";
 
-const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <AppNavigator />
+    </AuthProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
