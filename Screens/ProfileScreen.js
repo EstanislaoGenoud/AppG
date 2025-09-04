@@ -1,6 +1,6 @@
 // Pantalla de Perfil
 import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { AuthContext } from "../context/authContext.js";
 import { stylesPro } from "../Styles/StylesPro.js";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -23,6 +23,24 @@ export default function ProfileScreen({ navigation }) {
           <Text style={stylesPro.profileText}>In Process</Text>
           <Text style={stylesPro.profileText}>Finished</Text>
         </View>
+      </View>
+      <View style={stylesPro.profileSideBar}>
+        <TouchableOpacity>
+          <Text style={stylesPro.profileSideBarItem}>
+            <MaterialIcons name="settings" size={24} color="black" /> Settings
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={stylesPro.profileSideBarItem}>
+            <MaterialIcons name="logout" size={24} color="black" /> Logout
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={stylesPro.profileSideBarItem}>
+            <MaterialIcons name="delete" size={24} color="black" /> Delete
+            Account
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

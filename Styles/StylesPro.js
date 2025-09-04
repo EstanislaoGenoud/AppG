@@ -43,4 +43,22 @@ export const stylesPro = StyleSheet.create({
     fontSize: 14,
     color: "#888",
   },
+  profileSideBar: {
+    backgroundColor: "#f0f0f0",
+    width: "50%",
+    height: "100%",
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 20,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    justifyContent: "flex-start",
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  profileSideBarItem: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
 });
