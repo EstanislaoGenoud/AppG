@@ -5,7 +5,7 @@ import { AuthContext } from "../context/authContext.js";
 import { stylesPro } from "../Styles/StylesPro.js";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 export default function ProfileScreen({ navigation }) {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   return (
     <View style={stylesPro.container}>
       <View style={stylesPro.profileCard}>
@@ -25,12 +25,20 @@ export default function ProfileScreen({ navigation }) {
         </View>
       </View>
       <View style={stylesPro.profileSideBar}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Setting");
+          }}
+        >
           <Text style={stylesPro.profileSideBarItem}>
             <MaterialIcons name="settings" size={24} color="black" /> Settings
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            logout();
+          }}
+        >
           <Text style={stylesPro.profileSideBarItem}>
             <MaterialIcons name="logout" size={24} color="black" /> Logout
           </Text>

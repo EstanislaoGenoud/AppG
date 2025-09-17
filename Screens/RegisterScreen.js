@@ -2,9 +2,13 @@ import React, { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { stylesReg } from "../Styles/StylesReg.js";
 import { AuthContext } from "../context/authContext.js";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../config/firebase.js";
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const { register } = useContext(AuthContext);
 
@@ -12,12 +16,44 @@ export default function RegisterScreen({ navigation }) {
     try {
       await register(email, password);
       alert("Usuario Registrado con Exito!.");
+      const uId = auth.currentUser.uid;
+      guardarPerfil();
     } catch (error) {
-      alert(error.message);
+      alert(error);
+      console.log(error);
     }
+  };
+
+  const guardarPerfil = async () => {
+    await setDoc(
+      doc(db, "Usuarios"),
+      { email: email },
+      {
+        uId: auth.currentUser.uid,
+        name: name,
+        lastName: lastName,
+        email: email,
+      }
+    );
   };
   return (
     <View style={stylesReg.container}>
+      <TextInput
+        style={stylesReg.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Name"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
+      <TextInput
+        style={stylesReg.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Last Name"
+        value={lastName}
+        onChangeText={(text) => setLastName(text)}
+      />
       <TextInput
         style={stylesReg.input}
         autoCapitalize="none"
