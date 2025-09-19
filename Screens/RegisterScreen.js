@@ -7,8 +7,7 @@ import { db } from "../config/firebase.js";
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+  
   const [password, setPassword] = useState("");
   const { register } = useContext(AuthContext);
 
@@ -16,25 +15,10 @@ export default function RegisterScreen({ navigation }) {
     try {
       await register(email, password);
       alert("Usuario Registrado con Exito!.");
-      const uId = auth.currentUser.uid;
-      guardarPerfil();
     } catch (error) {
       alert(error);
       console.log(error);
     }
-  };
-
-  const guardarPerfil = async () => {
-    await setDoc(
-      doc(db, "Usuarios"),
-      { email: email },
-      {
-        uId: auth.currentUser.uid,
-        name: name,
-        lastName: lastName,
-        email: email,
-      }
-    );
   };
   return (
     <View style={stylesReg.container}>
